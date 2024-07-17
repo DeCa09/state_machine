@@ -1,0 +1,26 @@
+name: Rust CI
+
+on:
+  - push
+  - pull_request
+
+env:
+  CARGO_TERM_COLOR: 'always'
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-22.04]
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Code Formatting Check
+      run: cargo fmt --check
+    - name: Code Compilation Check
+      run: cargo check
+    - name: Linting
+      run: cargo clippy
+    - name: Test
+      run: cargo test --verbose
