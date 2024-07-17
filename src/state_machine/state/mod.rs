@@ -32,4 +32,58 @@ mod tests {
 
         assert_eq!(result, expected_result);
     }
+
+    #[test]
+    fn should_return_simple_string_as_input_data_when_in_starting_state() {
+        let starting_state = STARTING_STATE;
+
+        let expected_result = String::from("some input data");
+
+        let result = starting_state.get_input_data();
+
+        assert_eq!(result, expected_result);
+    }
+
+    #[test]
+    fn should_return_simple_string_as_output_data_when_in_starting_state() {
+        let starting_state = STARTING_STATE;
+
+        let expected_result = String::from("some output data");
+
+        let result = starting_state.get_output_data();
+
+        assert_eq!(result, expected_result);
+    }
+
+    #[test]
+    fn should_return_true_when_starting_state_has_computed_the_output() {
+        let starting_state = STARTING_STATE;
+
+        let expected_result = true;
+
+        let result = starting_state.has_output_data_been_computed();
+
+        assert_eq!(result, expected_result);
+    }
+
+    #[test]
+    fn should_return_false_when_starting_state_has_computed_the_output() {
+        let starting_state = STARTING_STATE;
+
+        let expected_result = false;
+
+        let result = starting_state.has_output_data_been_computed();
+
+        assert_eq!(result, expected_result);
+    }
+
+    fn should_return_simple_string_as_context_data_when_in_starting_state() {
+        let starting_state = STARTING_STATE;
+
+        let expected_result = String::from("some context data");
+
+        let result = starting_state.get_output_data();
+
+        assert_eq!(result, expected_result);
+    }
 }
