@@ -4,7 +4,7 @@ use std::fmt::Debug;
 
 pub mod data;
 
-pub trait State: Debug{
+pub trait State: Debug {
     type InputData: StateData;
     type OutputData: StateData;
     type Context: ContextData;
@@ -37,7 +37,8 @@ mod tests {
     }
 
     #[test]
-    fn should_return_simple_default_state_data_struct_as_input_data_when_output_data_has_not_been_computed_in_initial_starting_state() {
+    fn should_return_simple_default_state_data_struct_as_input_data_when_output_data_has_not_been_computed_in_initial_starting_state(
+    ) {
         let starting_state = StartingState::default();
 
         let expected_result = StartingStateData::default();
@@ -48,7 +49,8 @@ mod tests {
     }
 
     #[test]
-    fn should_return_simple_default_state_data_struct_as_input_data_when_in_initial_starting_state() {
+    fn should_return_simple_default_state_data_struct_as_input_data_when_in_initial_starting_state()
+    {
         let starting_state = StartingState::default();
 
         let expected_result = StartingStateData::default();
@@ -60,12 +62,15 @@ mod tests {
 
     #[test]
     #[should_panic]
-    fn should_panic_when_trying_to_access_output_data_before_it_has_been_computed_in_initial_starting_state() {
+    fn should_panic_when_trying_to_access_output_data_before_it_has_been_computed_in_initial_starting_state(
+    ) {
         let starting_state = StartingState::default();
 
         let expected_result = StartingStateData::default();
 
-        let result = starting_state.get_output_data().expect("The output should be a non-empty default 'StartingStateData' struct.");
+        let result = starting_state
+            .get_output_data()
+            .expect("The output should be a non-empty default 'StartingStateData' struct.");
 
         assert_eq!(result, expected_result);
     }

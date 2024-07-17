@@ -23,7 +23,6 @@ impl State for StartingState {
     type OutputData = StartingStateData;
     type Context = StartingStateContext;
 
-
     fn get_state_name(&self) -> String {
         "Starting State".to_string()
     }
@@ -32,7 +31,7 @@ impl State for StartingState {
         self.input
     }
 
-    fn compute_output_data(&mut self){
+    fn compute_output_data(&mut self) {
         self.output = Some(StartingStateData::default());
     }
 
