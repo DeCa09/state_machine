@@ -14,10 +14,12 @@ mod tests {
     const STARTING_STATE: StartingState = StartingState;
 
     #[test]
-    fn test_starting_state_name() {
+    fn should_return_name_of_starting_state_when_in_starting_state() {
+        let starting_state = STARTING_STATE;
+
         let expected_result = String::from("Starting State");
 
-        let result = STARTING_STATE.get_state_name();
+        let result = starting_state.get_state_name();
 
         assert_eq!(result, expected_result);
     }
