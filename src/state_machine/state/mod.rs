@@ -20,7 +20,6 @@ mod tests {
         let expected_result = String::from("Starting State");
 
         let result = starting_state.get_state_name();
-        
 
         assert_eq!(result, expected_result);
     }
