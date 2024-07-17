@@ -11,6 +11,6 @@ where
     C: ContextData,
     S: State,
 {
-    pub context_data: C,
     pub state: S,
+    pub context_data: C,
 }
