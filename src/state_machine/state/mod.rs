@@ -37,7 +37,7 @@ mod tests {
     }
 
     #[test]
-    fn should_return_simple_default_state_data_struct_as_input_data_when_output_data_has_not_been_computed_in_initial_starting_state(
+    fn should_return_default_custom_state_data_struct_as_input_data_when_output_data_has_not_been_computed_in_initial_starting_state(
     ) {
         let starting_state = StartingState::default();
 
@@ -49,7 +49,7 @@ mod tests {
     }
 
     #[test]
-    fn should_return_simple_default_state_data_struct_as_input_data_when_in_initial_starting_state()
+    fn should_return_default_custom_state_data_struct_as_input_data_when_in_initial_starting_state()
     {
         let starting_state = StartingState::default();
 
@@ -76,6 +76,17 @@ mod tests {
     }
 
     #[test]
+    fn should_return_false_when_starting_state_has_not_computed_the_output() {
+        let starting_state = StartingState::default();
+
+        let expected_result = false;
+
+        let result = starting_state.has_output_data_been_computed();
+
+        assert_eq!(result, expected_result);
+    }
+
+    #[test]
     fn should_return_true_when_starting_state_has_computed_the_output() {
         let mut starting_state = StartingState::default();
 
@@ -88,18 +99,7 @@ mod tests {
     }
 
     #[test]
-    fn should_return_false_when_starting_state_has_not_computed_the_output() {
-        let starting_state = StartingState::default();
-
-        let expected_result = false;
-
-        let result = starting_state.has_output_data_been_computed();
-
-        assert_eq!(result, expected_result);
-    }
-
-    #[test]
-    fn should_return_simple_string_as_context_data_when_in_starting_state() {
+    fn should_return_default_custom_context_struct_as_context_data_when_in_starting_state() {
         let starting_state = StartingState::default();
 
         let expected_result = StartingStateContext::default();
