@@ -1,7 +1,6 @@
 use crate::state_machine::context::ContextData;
 use crate::state_machine::{state::State, StateMachine};
 
-
 pub trait Transition<C: ContextData, S: State> {
     type NextState: State;
 
