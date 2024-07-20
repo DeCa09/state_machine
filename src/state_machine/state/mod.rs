@@ -1,10 +1,12 @@
 use super::context::ContextData;
 use data::StateData;
-use std::fmt::Debug;
+use std::{fmt::Debug, hash::Hash};
 
 pub mod data;
 
-pub trait State: Debug {
+pub trait State:
+    Debug + Send + Sync + Unpin + Clone + PartialEq + PartialOrd + Hash + Eq + Ord
+{
     type InputData: StateData;
     type OutputData: StateData;
     type Context: ContextData;
