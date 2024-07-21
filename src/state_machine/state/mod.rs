@@ -113,61 +113,64 @@ mod tests {
         assert_eq!(result, expected_result);
     }
 
-    fn implements_auto_traits<T: Sized + Send + Sync + Unpin + UnwindSafe>(){}
+    fn implements_auto_traits<T: Sized + Send + Sync + Unpin + UnwindSafe>() {}
     #[test]
-    fn should_still_implement_auto_traits_traits_when_implementing_state_trait(){
+    fn should_still_implement_auto_traits_traits_when_implementing_state_trait() {
         implements_auto_traits::<StartingState>();
     }
 
     fn implements_send<T: Send>() {}
     fn implements_sync<T: Sync>() {}
+
     #[test]
-    fn should_be_thread_safe_when_implementing_state_trait(){
+    fn should_implement_sync_when_implementing_state_trait() {
+        implements_sync::<StartingState>();
+    }
+
+    #[test]
+    fn should_implement_send_when_implementing_state_trait() {
+        implements_send::<StartingState>();
+    }
+
+    #[test]
+    fn should_be_thread_safe_when_implementing_state_trait() {
         implements_send::<StartingState>();
         implements_sync::<StartingState>();
     }
 
-    fn implements_sized<T: Sized>(){}
+    fn implements_sized<T: Sized>() {}
     #[test]
-    fn should_be_sized_when_implementing_state_trait(){
+    fn should_be_sized_when_implementing_state_trait() {
         implements_sized::<StartingState>();
     }
 
-    fn implements_hash<T: Hash>(){}
+    fn implements_hash<T: Hash>() {}
     #[test]
-    fn should_be_hashable_when_implementing_state_trait(){
+    fn should_be_hashable_when_implementing_state_trait() {
         implements_hash::<StartingState>();
     }
 
-    fn implements_partial_eq<T: PartialEq>(){}
+    fn implements_partial_eq<T: PartialEq>() {}
     #[test]
-    fn should_implement_partial_eq_when_implementing_state_trait(){
+    fn should_implement_partial_eq_when_implementing_state_trait() {
         implements_partial_eq::<StartingState>();
     }
 
-    fn implements_eq<T: Eq>(){}
+    fn implements_eq<T: Eq>() {}
     #[test]
-    fn should_implement_eq_when_implementing_state_trait(){
+    fn should_implement_eq_when_implementing_state_trait() {
         implements_eq::<StartingState>();
     }
 
-    fn implements_partial_ord<T: PartialOrd>(){}
+    fn implements_partial_ord<T: PartialOrd>() {}
     #[test]
-    fn should_implement_partial_ord_when_implementing_state_trait(){
+    fn should_implement_partial_ord_when_implementing_state_trait() {
         implements_partial_ord::<StartingState>();
     }
 
-    fn implements_ord<T: Ord>(){}
+    fn implements_ord<T: Ord>() {}
     #[test]
-    fn should_implement_ord_when_implementing_state_trait(){
+    fn should_implement_ord_when_implementing_state_trait() {
         implements_ord::<StartingState>();
     }
-
-
-
-
-
-
-
-
 }
