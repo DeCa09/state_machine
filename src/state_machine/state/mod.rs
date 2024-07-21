@@ -145,10 +145,22 @@ mod tests {
         implements_partial_eq::<StartingState>();
     }
 
-    fn implements_eq<T: PartialEq>(){}
+    fn implements_eq<T: Eq>(){}
     #[test]
     fn should_implement_eq_when_implementing_state_trait(){
         implements_eq::<StartingState>();
+    }
+
+    fn implements_partial_ord<T: PartialOrd>(){}
+    #[test]
+    fn should_implement_partial_ord_when_implementing_state_trait(){
+        implements_partial_ord::<StartingState>();
+    }
+
+    fn implements_ord<T: Ord>(){}
+    #[test]
+    fn should_implement_ord_when_implementing_state_trait(){
+        implements_ord::<StartingState>();
     }
 
 
