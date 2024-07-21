@@ -191,4 +191,10 @@ mod tests {
     fn should_implement_clone_when_implementing_state_trait() {
         implements_clone::<StartingState>();
     }
+
+    fn implements_unpin<T: Unpin>() {}
+    #[test]
+    fn should_implement_unpin_when_implementing_state_trait() {
+        implements_unpin::<StartingState>();
+    }
 }
