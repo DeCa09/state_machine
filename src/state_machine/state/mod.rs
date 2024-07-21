@@ -123,13 +123,13 @@ mod tests {
     fn implements_sync<T: Sync>() {}
 
     #[test]
-    fn should_implement_sync_when_implementing_state_trait() {
-        implements_sync::<StartingState>();
+    fn should_implement_send_when_implementing_state_trait() {
+        implements_send::<StartingState>();
     }
 
     #[test]
-    fn should_implement_send_when_implementing_state_trait() {
-        implements_send::<StartingState>();
+    fn should_implement_sync_when_implementing_state_trait() {
+        implements_sync::<StartingState>();
     }
 
     #[test]
@@ -172,5 +172,23 @@ mod tests {
     #[test]
     fn should_implement_ord_when_implementing_state_trait() {
         implements_ord::<StartingState>();
+    }
+
+    fn implements_default<T: Default>() {}
+    #[test]
+    fn should_implement_default_when_implementing_state_trait() {
+        implements_default::<StartingState>()
+    }
+
+    fn implements_debug<T: Debug>() {}
+    #[test]
+    fn should_implement_debug_when_implementing_state_trait() {
+        implements_debug::<StartingState>();
+    }
+
+    fn implements_clone<T: Clone>() {}
+    #[test]
+    fn should_implement_clone_when_implementing_state_trait() {
+        implements_clone::<StartingState>();
     }
 }
