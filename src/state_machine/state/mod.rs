@@ -197,4 +197,17 @@ mod tests {
     fn should_implement_unpin_when_implementing_state_trait() {
         implements_unpin::<StartingState>();
     }
+
+    #[test]
+    fn should_be_able_to_call_state_methods_when_using_a_refeence_to_a_state_just_the_same_as_if_with_state_itselfs(
+    ) {
+        let starting_state = StartingState::default();
+        let ref_to_starting_state = &StartingState::default();
+
+        let expected_result = starting_state.get_context_data();
+
+        let result = ref_to_starting_state.get_context_data();
+
+        assert_eq!(result, expected_result);
+    }
 }
