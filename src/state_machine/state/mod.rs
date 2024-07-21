@@ -146,7 +146,7 @@ mod tests {
 
     fn implements_hash<T: Hash>() {}
     #[test]
-    fn should_be_hashable_when_implementing_state_trait() {
+    fn should_implement_hash_when_implementing_state_trait() {
         implements_hash::<StartingState>();
     }
 
