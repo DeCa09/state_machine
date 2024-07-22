@@ -270,8 +270,8 @@ mod tests {
     }
 
     #[test]
-    fn should_return_default_state_data_as_input_data_when_reference_sample_state_in_initial_state(
-    ) {
+    fn should_return_default_state_data_as_input_data_when_reference_sample_state_in_initial_state()
+    {
         let ref_to_sample_state = &SampleState::default();
 
         let expected_result = SampleStateData::default();
