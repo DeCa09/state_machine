@@ -1,3 +1,3 @@
-pub mod starting_state;
+pub mod sample_state;
 
-pub use starting_state::{StartingState, StartingStateContext, StartingStateData};
+pub use sample_state::{SampleState, SampleStateContext, SampleStateData};
