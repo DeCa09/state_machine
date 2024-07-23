@@ -20,8 +20,14 @@ jobs:
     - uses: dtolnay/rust-toolchain@master
       with:
         toolchain: ${{ matrix.rust }}
+    - name: Install CI dependencies
+      run: |
+        cargo install cargo-audit
+
     - name: Code Formatting Check
       run: cargo fmt --check
+    - name: Dependency Security Check
+      run: cargo audit
     - name: Code Compilation Check
       run: cargo check
     - name: Linting
