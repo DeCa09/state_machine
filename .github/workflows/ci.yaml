@@ -23,11 +23,13 @@ jobs:
     - name: Install CI dependencies
       run: |
         cargo install cargo-audit
-
+        cargo install --locked cargo-deny
     - name: Code Formatting Check
       run: cargo fmt --check
-    - name: Dependency Security Check
-      run: cargo audit
+    - name: Dependency Security and Licensing Check
+      run: |
+        cargo audit
+        cargo deny check
     - name: Code Compilation Check
       run: cargo check
     - name: Linting
