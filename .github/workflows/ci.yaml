@@ -22,6 +22,8 @@ jobs:
         toolchain: ${{ matrix.rust }}
     - name: Code Formatting Check
       run: cargo fmt --check
+    - name: Security Check
+      run: cargo audit
     - name: Code Compilation Check
       run: cargo check
     - name: Linting
