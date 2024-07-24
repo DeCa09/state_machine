@@ -40,9 +40,6 @@ impl State for SampleState {
         self.output.clone()
     }
 
-    fn has_output_data_been_computed(&self) -> bool {
-        self.get_output_data().is_some()
-    }
 
     fn get_context_data(&self) -> SampleStateContext {
         self.context_data.clone()
