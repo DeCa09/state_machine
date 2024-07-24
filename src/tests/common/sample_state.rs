@@ -28,16 +28,16 @@ impl State for SampleState {
         "Sample State".to_string()
     }
 
-    fn get_input_data(&self) -> SampleStateData {
-        self.input.clone()
+    fn get_input_data(&self) -> &SampleStateData {
+        &self.input
     }
 
     fn compute_output_data(&mut self) {
         self.output = Some(SampleStateData::default());
     }
 
-    fn get_output_data(&self) -> Option<SampleStateData> {
-        self.output.clone()
+    fn get_output_data(&self) -> &Option<SampleStateData> {
+        &self.output
     }
 
     fn get_context_data(&self) -> SampleStateContext {

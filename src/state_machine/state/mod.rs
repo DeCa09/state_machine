@@ -13,11 +13,11 @@ pub trait State:
 
     fn get_state_name(&self) -> String;
 
-    fn get_input_data(&self) -> Self::InputData;
+    fn get_input_data(&self) -> &Self::InputData;
 
     fn compute_output_data(&mut self);
 
-    fn get_output_data(&self) -> Option<Self::OutputData>;
+    fn get_output_data(&self) -> &Option<Self::OutputData>;
 
     fn has_output_data_been_computed(&self) -> bool {
         self.get_output_data().is_some()
@@ -47,7 +47,7 @@ mod tests {
     ) {
         let sample_state = SampleState::default();
 
-        let expected_result = SampleStateData::default();
+        let expected_result = &SampleStateData::default();
 
         let result = sample_state.get_input_data();
 
@@ -58,7 +58,7 @@ mod tests {
     fn should_return_default_state_data_struct_as_input_data_when_in_initial_sample_state() {
         let sample_state = SampleState::default();
 
-        let expected_result = SampleStateData::default();
+        let expected_result = &SampleStateData::default();
 
         let result = sample_state.get_input_data();
 
@@ -70,10 +70,11 @@ mod tests {
     fn should_panic_when_trying_to_access_output_data_before_it_has_been_computed_in_state() {
         let sample_state = SampleState::default();
 
-        let expected_result = SampleStateData::default();
+        let expected_result = &SampleStateData::default();
 
         let result = sample_state
             .get_output_data()
+            .as_ref()
             .expect("The output should be a non-empty default 'SampleStateData' struct.");
 
         assert_eq!(result, expected_result);
@@ -239,10 +240,11 @@ mod tests {
     ) {
         let ref_to_sample_state = &SampleState::default();
 
-        let expected_result = SampleStateData::default();
+        let expected_result = &SampleStateData::default();
 
         let result = ref_to_sample_state
             .get_output_data()
+            .as_ref()
             .expect("The output should be a non-empty default 'SampleStateData' struct.");
 
         assert_eq!(result, expected_result);
@@ -264,7 +266,7 @@ mod tests {
     ) {
         let ref_to_sample_state = &SampleState::default();
 
-        let expected_result = SampleStateData::default();
+        let expected_result = &SampleStateData::default();
 
         let result = ref_to_sample_state.get_input_data();
 
@@ -276,7 +278,7 @@ mod tests {
     {
         let ref_to_sample_state = &SampleState::default();
 
-        let expected_result = SampleStateData::default();
+        let expected_result = &SampleStateData::default();
 
         let result = ref_to_sample_state.get_input_data();
 
