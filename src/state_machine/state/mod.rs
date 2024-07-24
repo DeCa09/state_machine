@@ -19,7 +19,7 @@ pub trait State:
 
     fn get_output_data(&self) -> Option<Self::OutputData>;
 
-    fn has_output_data_been_computed(&self) -> bool{
+    fn has_output_data_been_computed(&self) -> bool {
         self.get_output_data().is_some()
     }
 

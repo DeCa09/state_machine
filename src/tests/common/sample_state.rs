@@ -40,7 +40,6 @@ impl State for SampleState {
         self.output.clone()
     }
 
-
     fn get_context_data(&self) -> SampleStateContext {
         self.context_data.clone()
     }
