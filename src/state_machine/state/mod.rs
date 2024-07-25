@@ -24,7 +24,7 @@ pub trait State:
         self.get_output_data().is_some()
     }
 
-    fn get_context_data(&self) -> Self::Context;
+    fn get_context_data(&self) -> &Self::Context;
 }
 
 #[cfg(test)]
@@ -107,7 +107,7 @@ mod tests {
     fn should_return_default_context_data_when_in_initial_state() {
         let sample_state = SampleState::default();
 
-        let expected_result = SampleStateContext::default();
+        let expected_result = &SampleStateContext::default();
 
         let result = sample_state.get_context_data();
 
