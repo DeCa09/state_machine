@@ -1,5 +1,4 @@
-use crate::state_machine::context::ContextData;
-use crate::state_machine::state::{data::StateData, State};
+use crate::state_machine::state::{ContextData, State, StateData};
 
 #[derive(Debug, Clone, Default, PartialEq, PartialOrd, Hash, Eq, Ord)]
 pub struct SampleState {

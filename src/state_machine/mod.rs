@@ -1,8 +1,7 @@
-pub mod context;
 pub mod state;
 pub mod transition;
 
-use crate::state_machine::context::ContextData;
+use crate::state_machine::state::ContextData;
 use crate::state_machine::state::State;
 
 #[derive(Debug)]
