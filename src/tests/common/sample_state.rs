@@ -36,8 +36,8 @@ impl State for SampleState {
         self.output = Some(SampleStateData::default());
     }
 
-    fn get_output_data(&self) -> &Option<SampleStateData> {
-        &self.output
+    fn get_output_data(&self) -> Option<&SampleStateData> {
+        self.output.as_ref()
     }
 
     fn get_context_data(&self) -> SampleStateContext {

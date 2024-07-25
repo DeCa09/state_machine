@@ -17,7 +17,7 @@ pub trait State:
 
     fn compute_output_data(&mut self);
 
-    fn get_output_data(&self) -> &Option<Self::OutputData>;
+    fn get_output_data(&self) -> Option<&Self::OutputData>;
 
     fn has_output_data_been_computed(&self) -> bool {
         self.get_output_data().is_some()
@@ -74,7 +74,6 @@ mod tests {
 
         let result = sample_state
             .get_output_data()
-            .as_ref()
             .expect("The output should be a non-empty default 'SampleStateData' struct.");
 
         assert_eq!(result, expected_result);
@@ -244,7 +243,6 @@ mod tests {
 
         let result = ref_to_sample_state
             .get_output_data()
-            .as_ref()
             .expect("The output should be a non-empty default 'SampleStateData' struct.");
 
         assert_eq!(result, expected_result);
