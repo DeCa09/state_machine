@@ -3,7 +3,6 @@ use std::{fmt::Debug, hash::Hash};
 pub mod context_data;
 pub mod state_data;
 
-
 pub use context_data::ContextData;
 pub use state_data::StateData;
 pub trait State:
