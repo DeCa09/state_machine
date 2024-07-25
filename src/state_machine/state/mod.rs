@@ -284,4 +284,16 @@ mod tests {
 
         assert_eq!(result, expected_result);
     }
+
+    #[test]
+    fn should_not_change_input_data_when_computing_output_data() {
+        let mut sample_state = SampleState::default();
+
+        let expected_result = &sample_state.get_input_data().clone();
+
+        sample_state.compute_output_data();
+        let result = sample_state.get_input_data();
+
+        assert_eq!(result, expected_result)
+    }
 }
