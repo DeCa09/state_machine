@@ -6,5 +6,6 @@ license = "MIT OR Apache-2.0"
 description = "A State Machine Framework written in Rust."
 repository = "https://github.com/DeCa09/state_machine"
 categories = ["algorithms", "rust-patterns"]
+keywords = ["state-machine", "design-pattern"]
 
 [dependencies]
