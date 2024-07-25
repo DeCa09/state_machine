@@ -1,9 +1,10 @@
-use super::context::ContextData;
-use data::StateData;
 use std::{fmt::Debug, hash::Hash};
 
-pub mod data;
+pub mod context_data;
+pub mod state_data;
 
+pub use context_data::ContextData;
+pub use state_data::StateData;
 pub trait State:
     Debug + Send + Sync + Unpin + Clone + PartialEq + PartialOrd + Hash + Eq + Ord
 {
@@ -13,15 +14,17 @@ pub trait State:
 
     fn get_state_name(&self) -> String;
 
-    fn get_input_data(&self) -> Self::InputData;
+    fn get_input_data(&self) -> &Self::InputData;
 
     fn compute_output_data(&mut self);
 
-    fn get_output_data(&self) -> Option<Self::OutputData>;
+    fn get_output_data(&self) -> Option<&Self::OutputData>;
 
-    fn has_output_data_been_computed(&self) -> bool;
+    fn has_output_data_been_computed(&self) -> bool {
+        self.get_output_data().is_some()
+    }
 
-    fn get_context_data(&self) -> Self::Context;
+    fn get_context_data(&self) -> &Self::Context;
 }
 
 #[cfg(test)]
@@ -45,7 +48,7 @@ mod tests {
     ) {
         let sample_state = SampleState::default();
 
-        let expected_result = SampleStateData::default();
+        let expected_result = &SampleStateData::default();
 
         let result = sample_state.get_input_data();
 
@@ -56,7 +59,7 @@ mod tests {
     fn should_return_default_state_data_struct_as_input_data_when_in_initial_sample_state() {
         let sample_state = SampleState::default();
 
-        let expected_result = SampleStateData::default();
+        let expected_result = &SampleStateData::default();
 
         let result = sample_state.get_input_data();
 
@@ -68,7 +71,7 @@ mod tests {
     fn should_panic_when_trying_to_access_output_data_before_it_has_been_computed_in_state() {
         let sample_state = SampleState::default();
 
-        let expected_result = SampleStateData::default();
+        let expected_result = &SampleStateData::default();
 
         let result = sample_state
             .get_output_data()
@@ -104,7 +107,7 @@ mod tests {
     fn should_return_default_context_data_when_in_initial_state() {
         let sample_state = SampleState::default();
 
-        let expected_result = SampleStateContext::default();
+        let expected_result = &SampleStateContext::default();
 
         let result = sample_state.get_context_data();
 
@@ -237,7 +240,7 @@ mod tests {
     ) {
         let ref_to_sample_state = &SampleState::default();
 
-        let expected_result = SampleStateData::default();
+        let expected_result = &SampleStateData::default();
 
         let result = ref_to_sample_state
             .get_output_data()
@@ -262,7 +265,7 @@ mod tests {
     ) {
         let ref_to_sample_state = &SampleState::default();
 
-        let expected_result = SampleStateData::default();
+        let expected_result = &SampleStateData::default();
 
         let result = ref_to_sample_state.get_input_data();
 
@@ -274,10 +277,22 @@ mod tests {
     {
         let ref_to_sample_state = &SampleState::default();
 
-        let expected_result = SampleStateData::default();
+        let expected_result = &SampleStateData::default();
 
         let result = ref_to_sample_state.get_input_data();
 
         assert_eq!(result, expected_result);
+    }
+
+    #[test]
+    fn should_not_change_input_data_when_computing_output_data() {
+        let mut sample_state = SampleState::default();
+
+        let expected_result = &sample_state.get_input_data().clone();
+
+        sample_state.compute_output_data();
+        let result = sample_state.get_input_data();
+
+        assert_eq!(result, expected_result)
     }
 }

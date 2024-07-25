@@ -1,5 +1,4 @@
-use crate::state_machine::context::ContextData;
-use crate::state_machine::state::{data::StateData, State};
+use crate::state_machine::state::{ContextData, State, StateData};
 
 #[derive(Debug, Clone, Default, PartialEq, PartialOrd, Hash, Eq, Ord)]
 pub struct SampleState {
@@ -28,23 +27,19 @@ impl State for SampleState {
         "Sample State".to_string()
     }
 
-    fn get_input_data(&self) -> SampleStateData {
-        self.input.clone()
+    fn get_input_data(&self) -> &SampleStateData {
+        &self.input
     }
 
     fn compute_output_data(&mut self) {
         self.output = Some(SampleStateData::default());
     }
 
-    fn get_output_data(&self) -> Option<SampleStateData> {
-        self.output.clone()
+    fn get_output_data(&self) -> Option<&SampleStateData> {
+        self.output.as_ref()
     }
 
-    fn has_output_data_been_computed(&self) -> bool {
-        self.get_output_data().is_some()
-    }
-
-    fn get_context_data(&self) -> SampleStateContext {
-        self.context_data.clone()
+    fn get_context_data(&self) -> &SampleStateContext {
+        &self.context_data
     }
 }
