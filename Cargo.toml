@@ -9,3 +9,6 @@ categories = ["algorithms", "rust-patterns"]
 keywords = ["state-machine", "design-pattern"]
 
 [dependencies]
+
+[lints.rust]
+unsafe_code = "forbid"
