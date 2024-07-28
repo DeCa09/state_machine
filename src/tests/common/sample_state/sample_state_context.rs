@@ -1,11 +1,11 @@
 use crate::state_machine::state::ContextData;
 
-pub struct SampleStateContextUpdater{
-    context_data: Option<String>
+pub struct SampleStateContextUpdater {
+    context_data: Option<String>,
 }
 
 #[derive(Debug, Clone, Default, PartialEq, PartialOrd, Hash, Eq, Ord)]
-pub struct SampleStateContext{
+pub struct SampleStateContext {
     context_data: String,
 }
 
@@ -20,5 +20,4 @@ impl ContextData for SampleStateContext {
             self.context_data = value;
         }
     }
-
 }

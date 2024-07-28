@@ -16,7 +16,6 @@ pub struct SampleStateData;
 
 impl StateData for SampleStateData {}
 
-
 impl State for SampleState {
     type InputData = SampleStateData;
     type OutputData = SampleStateData;
