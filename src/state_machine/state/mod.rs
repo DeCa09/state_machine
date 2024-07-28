@@ -67,7 +67,7 @@ mod tests {
     }
 
     #[test]
-    #[should_panic]
+    #[should_panic(expected = "output should not be empty")]
     fn should_panic_when_trying_to_access_output_data_before_it_has_been_computed_in_state() {
         let sample_state = SampleState::default();
 
@@ -75,7 +75,7 @@ mod tests {
 
         let result = sample_state
             .get_output_data()
-            .expect("The output should be a non-empty default 'SampleStateData' struct.");
+            .expect("The output should not be empty.");
 
         assert_eq!(result, expected_result);
     }
@@ -235,7 +235,7 @@ mod tests {
     }
 
     #[test]
-    #[should_panic]
+    #[should_panic(expected = "output should not be empty")]
     fn should_panic_when_trying_to_access_output_data_before_it_has_been_computed_in_reference_state(
     ) {
         let ref_to_sample_state = &SampleState::default();
@@ -244,7 +244,7 @@ mod tests {
 
         let result = ref_to_sample_state
             .get_output_data()
-            .expect("The output should be a non-empty default 'SampleStateData' struct.");
+            .expect("The output should not be empty.");
 
         assert_eq!(result, expected_result);
     }
