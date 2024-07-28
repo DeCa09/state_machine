@@ -1,4 +1,7 @@
-use crate::state_machine::state::{ContextData, State, StateData};
+use crate::state_machine::state::{State, StateData};
+
+pub mod sample_state_context;
+pub use sample_state_context::SampleStateContext;
 
 #[derive(Debug, Clone, Default, PartialEq, PartialOrd, Hash, Eq, Ord)]
 pub struct SampleState {
@@ -13,10 +16,6 @@ pub struct SampleStateData;
 
 impl StateData for SampleStateData {}
 
-#[derive(Debug, Clone, Default, PartialEq, PartialOrd, Hash, Eq, Ord)]
-pub struct SampleStateContext;
-
-impl ContextData for SampleStateContext {}
 
 impl State for SampleState {
     type InputData = SampleStateData;
