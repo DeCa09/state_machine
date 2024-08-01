@@ -1,7 +1,7 @@
 use crate::state_machine::state::{State, StateData};
 
 pub mod sample_state_context;
-pub use sample_state_context::{SampleStateContext, SampleStateContextUpdater};
+pub use sample_state_context::{SampleStateContext, SampleStateContextUpdaterBuilder};
 
 #[derive(Debug, Clone, Default, PartialEq, PartialOrd, Hash, Eq, Ord)]
 pub struct SampleState {

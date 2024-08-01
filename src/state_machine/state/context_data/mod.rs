@@ -12,7 +12,7 @@ pub trait ContextData:
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::tests::common::{SampleStateContext, SampleStateContextUpdater};
+    use crate::tests::common::{SampleStateContext, SampleStateContextUpdaterBuilder};
 
     #[test]
     fn should_return_reference_to_default_sample_context_when_initialized_with_default() {
@@ -39,9 +39,9 @@ mod tests {
     #[test]
     fn should_update_context_data_to_random_string_with_update_context_method() {
         let mut context = SampleStateContext::default();
-        let update: SampleStateContextUpdater = SampleStateContextUpdater {
-            context_data: Some(String::from("Updated Context!")),
-        };
+        let update = SampleStateContextUpdaterBuilder::default()
+            .context_data(String::from("Updated Context!"))
+            .build();
 
         let expected_result = &SampleStateContext::new(String::from("Updated Context!"));
 
@@ -54,7 +54,7 @@ mod tests {
     #[test]
     fn should_leave_context_unchanged_when_empty_updates() {
         let mut context = SampleStateContext::default();
-        let empty_update = SampleStateContextUpdater { context_data: None };
+        let empty_update = SampleStateContextUpdaterBuilder::default().build();
 
         let expected_result = &SampleStateContext::default();
 
@@ -67,7 +67,7 @@ mod tests {
     #[test]
     fn should_leave_context_unchanged_when_using_default_updater() {
         let mut context = SampleStateContext::default();
-        let empty_update = SampleStateContextUpdater::default();
+        let empty_update = SampleStateContextUpdaterBuilder::default().build();
 
         let expected_result = &SampleStateContext::default();
 
