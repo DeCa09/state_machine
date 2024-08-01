@@ -26,7 +26,7 @@ mod tests {
     }
 
     #[test]
-    fn should_create_different_sample_context_with_custom_data_when_using_new_as_constructor() {
+    fn should_create_different_context_with_custom_data_when_using_new_as_constructor() {
         let sample_context = &SampleStateContext::new(String::from("Demir ist der Boss."));
 
         let default_sample_context = &SampleStateContext::default();
@@ -37,7 +37,7 @@ mod tests {
     }
 
     #[test]
-    fn should_update_context_data_to_random_string_with_update_context_method() {
+    fn should_update_context_data_to_specified_string_when_update_contains_specified_string() {
         let mut context = SampleStateContext::default();
         let update = SampleStateContextUpdaterBuilder::default()
             .context_data(String::from("Updated Context!"))
@@ -52,20 +52,23 @@ mod tests {
     }
 
     #[test]
-    fn should_leave_context_unchanged_when_empty_updates() {
+    fn should_update_context_to_latest_specified_string_when_multiple_updates_in_builder() {
         let mut context = SampleStateContext::default();
-        let empty_update = SampleStateContextUpdaterBuilder::default().build();
+        let update = SampleStateContextUpdaterBuilder::default()
+            .context_data(String::from("First Update!"))
+            .context_data(String::from("Latest Update!"))
+            .build();
 
-        let expected_result = &SampleStateContext::default();
+        let expected_result = &SampleStateContext::new(String::from("Latest Update!"));
 
-        context.update_context(empty_update);
+        context.update_context(update);
         let result = context.get_context();
 
         assert_eq!(result, expected_result);
     }
 
     #[test]
-    fn should_leave_context_unchanged_when_using_default_updater() {
+    fn should_leave_context_unchanged_when_empty_update() {
         let mut context = SampleStateContext::default();
         let empty_update = SampleStateContextUpdaterBuilder::default().build();
 
@@ -76,4 +79,5 @@ mod tests {
 
         assert_eq!(result, expected_result);
     }
+
 }
