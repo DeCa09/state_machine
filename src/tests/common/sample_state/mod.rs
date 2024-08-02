@@ -4,7 +4,7 @@ pub mod sample_state_context;
 pub mod sample_state_data;
 
 pub use sample_state_context::{SampleStateContext, SampleStateContextUpdaterBuilder};
-pub use sample_state_data::SampleStateData;
+pub use sample_state_data::{SampleStateData, SampleStateDataUpdaterBuilder};
 
 #[derive(Debug, Clone, Default, PartialEq, PartialOrd, Hash, Eq, Ord)]
 pub struct SampleState {
