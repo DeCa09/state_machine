@@ -1,6 +1,9 @@
-use crate::state_machine::state::{State, StateData};
+use crate::state_machine::state::State;
 
+pub mod sample_state_data;
 pub mod sample_state_context;
+
+pub use sample_state_data::SampleStateData;
 pub use sample_state_context::{SampleStateContext, SampleStateContextUpdaterBuilder};
 
 #[derive(Debug, Clone, Default, PartialEq, PartialOrd, Hash, Eq, Ord)]
@@ -9,11 +12,6 @@ pub struct SampleState {
     output: Option<SampleStateData>,
     context_data: SampleStateContext,
 }
-
-#[derive(Debug, Clone, Default, PartialEq, PartialOrd, Hash, Eq, Ord)]
-pub struct SampleStateData;
-
-impl StateData for SampleStateData {}
 
 impl State for SampleState {
     type InputData = SampleStateData;
