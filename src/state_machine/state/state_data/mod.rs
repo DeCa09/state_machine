@@ -50,4 +50,33 @@ mod tests {
 
         assert_eq!(result, expected_result);
     }
+
+    #[test]
+    fn should_update_state_data_to_latest_specified_string_when_multiple_updates_in_builder() {
+        let mut state_data = SampleStateData::default();
+        let update = SampleStateDataUpdaterBuilder::default()
+            .state_data(String::from("First Update!"))
+            .state_data(String::from("Latest Update!"))
+            .build();
+
+        let expected_result = &SampleStateData::new(String::from("Latest Update!"));
+
+        state_data.update_state(update);
+        let result = state_data.get_state();
+
+        assert_eq!(result, expected_result);
+    }
+
+    #[test]
+    fn should_leave_state_data_unchanged_when_empty_update() {
+        let mut state_data = SampleStateData::default();
+        let empty_update = SampleStateDataUpdaterBuilder::default().build();
+
+        let expected_result = &SampleStateData::default();
+
+        state_data.update_state(empty_update);
+        let result = state_data.get_state();
+
+        assert_eq!(result, expected_result);
+    }
 }
