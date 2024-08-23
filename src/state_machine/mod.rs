@@ -1,15 +1,12 @@
 pub mod state;
 pub mod transition;
 
-use crate::state_machine::state::ContextData;
 use crate::state_machine::state::State;
 
 #[derive(Debug)]
-pub struct StateMachine<C, S>
+pub struct StateMachine<S>
 where
-    C: ContextData,
     S: State,
 {
     pub state: S,
-    pub context_data: C,
 }
