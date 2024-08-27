@@ -1,3 +1,5 @@
+use std::fmt::Debug;
+
 use crate::state_machine::state::State;
 
 pub mod sample_state_context;

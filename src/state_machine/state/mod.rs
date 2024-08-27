@@ -38,7 +38,7 @@ mod tests {
 
         let expected_result = String::from("Sample State");
 
-        let result = sample_state.get_state_name();
+        let result = sample_state.get_state_name().to_string();
 
         assert_eq!(result, expected_result);
     }
@@ -255,7 +255,7 @@ mod tests {
 
         let expected_result = String::from("Sample State");
 
-        let result = ref_to_sample_state.get_state_name();
+        let result = ref_to_sample_state.get_state_name().to_string();
 
         assert_eq!(result, expected_result);
     }
