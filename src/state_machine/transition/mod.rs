@@ -14,5 +14,6 @@ pub trait Transition<S: State>: StateMachine<S> {
     /// - Invalid state transition due to undefined
     /// - No conversion between data formats between states possible
     /// - ...
-    fn transition_to_next_state(self) -> Result<Self::NextState, &'static str>; //fn transition_to_next_state(self) -> Result<StateMachine<Self::NextState>, Self::Error>;
+    fn transition_to_next_state(self) -> Result<Self::NextState, &'static str>;
+    //fn transition_to_next_state(self) -> Result<StateMachine<Self::NextState>, Self::Error>;
 }
