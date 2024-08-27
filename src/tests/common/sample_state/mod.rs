@@ -18,8 +18,8 @@ impl State for SampleState {
     type OutputData = SampleStateData;
     type Context = SampleStateContext;
 
-    fn get_state_name(&self) -> String {
-        "Sample State".to_string()
+    fn get_state_name(&self) -> impl ToString {
+        "Sample State"
     }
 
     fn get_input_data(&self) -> &SampleStateData {
