@@ -12,7 +12,7 @@ pub trait State:
     type OutputData: StateData;
     type Context: ContextData;
 
-    fn get_state_name(&self) -> String;
+    fn get_state_name(&self) -> impl ToString;
 
     fn get_input_data(&self) -> &Self::InputData;
 
