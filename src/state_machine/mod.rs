@@ -17,9 +17,72 @@ pub trait StateMachine<S: State> {
 mod tests {
     use super::*;
     use crate::tests::common::{
-        SampleState, SampleStateContext, SampleStateData, SampleStateMachine,
+        SampleState, SampleStateContext, SampleStateData, SampleStateMachine
     };
     use std::{fmt::Debug, hash::Hash};
+
+
+
+    #[test]
+    #[should_panic(expected = "output should not be empty")]
+    fn should_panic_when_trying_to_access_output_data_before_state_has_been_advanced_and_computed_the_output() {
+        let sample_state_machine = SampleStateMachine::default();
+
+        let _result = sample_state_machine
+            .get_current_state()
+            .get_output_data()
+            .expect("The output should not be empty.");
+    }
+
+    #[test]
+    fn should_return_true_when_state_has_advanced_and_computed_the_output() {
+        let mut sample_state_machine = SampleStateMachine::default();
+
+        let expected_result = true;
+
+        sample_state_machine.advance_state();
+
+        let result = sample_state_machine
+            .get_current_state()
+            .has_output_data_been_computed();
+
+        assert_eq!(result, expected_result);
+    }
+
+
+    #[test]
+    fn should_return_same_output_data_even_when_state_has_advanced_different_amount_of_times() {
+        let mut sm1: SampleStateMachine = SampleStateMachine::default();
+        sm1.advance_state();
+        let mut sm2 = SampleStateMachine::default();
+        sm2.advance_state();
+        sm2.advance_state();
+
+        let expected_result = sm1.get_current_state().get_output_data();
+
+
+        let result = sm2
+            .get_current_state()
+            .get_output_data();
+
+        assert_eq!(result, expected_result);
+    }
+
+
+    #[test]
+    fn should_return_true_when_state_has_advanced_multiple_times_without_transition_and_computed_the_output() {
+        let mut sample_state_machine = SampleStateMachine::default();
+
+        let expected_result = true;
+
+        sample_state_machine.advance_state();
+        sample_state_machine.advance_state();
+        let result = sample_state_machine
+            .get_current_state()
+            .has_output_data_been_computed();
+
+        assert_eq!(result, expected_result);
+    }
 
     #[test]
     fn should_return_sample_state_as_current_state() {

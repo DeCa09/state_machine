@@ -34,6 +34,6 @@ impl StateMachine<SampleState> for SampleStateMachine {
         // Here we could implement logic to transition to another state
         println!("Advancing state");
         // Example: Simulate state change by computing output data
-        self.current_state.compute_output_data();
+        self.get_current_state_mut().compute_output_data();
     }
 }
