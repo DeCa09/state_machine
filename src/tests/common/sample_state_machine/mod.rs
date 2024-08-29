@@ -11,12 +11,6 @@ pub struct SampleStateMachine {
     context_data: SampleStateContext,
 }
 
-impl SampleStateMachine {
-    pub fn new() -> Self {
-        SampleStateMachine::default()
-    }
-}
-
 impl StateMachine<SampleState> for SampleStateMachine {
     fn get_current_state(&self) -> &SampleState {
         &self.current_state
