@@ -39,33 +39,3 @@ impl StateMachine<SampleState> for SampleStateMachine {
         self.current_state.compute_output_data();
     }
 }
-
-impl State for SampleStateMachine {
-    type InputData = SampleStateData;
-    type OutputData = SampleStateData;
-    type Context = SampleStateContext;
-
-    fn get_state_name(&self) -> impl ToString {
-        format!(
-            "State Machine with current state: {}",
-            self.current_state.get_state_name().to_string()
-        )
-    }
-
-    fn get_input_data(&self) -> &Self::InputData {
-        &self.input
-    }
-
-    fn compute_output_data(&mut self) {
-        self.current_state.compute_output_data();
-        self.output = self.current_state.get_output_data().cloned();
-    }
-
-    fn get_output_data(&self) -> Option<&Self::OutputData> {
-        self.current_state.get_output_data()
-    }
-
-    fn get_context_data(&self) -> &Self::Context {
-        &self.context_data
-    }
-}
