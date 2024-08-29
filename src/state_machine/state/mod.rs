@@ -12,7 +12,7 @@ pub trait State:
     type OutputData: StateData;
     type Context: ContextData;
 
-    fn get_state_name(&self) -> String;
+    fn get_state_name(&self) -> impl ToString;
 
     fn get_input_data(&self) -> &Self::InputData;
 
@@ -38,7 +38,7 @@ mod tests {
 
         let expected_result = String::from("Sample State");
 
-        let result = sample_state.get_state_name();
+        let result = sample_state.get_state_name().to_string();
 
         assert_eq!(result, expected_result);
     }
@@ -71,13 +71,9 @@ mod tests {
     fn should_panic_when_trying_to_access_output_data_before_it_has_been_computed_in_state() {
         let sample_state = SampleState::default();
 
-        let expected_result = &SampleStateData::default();
-
-        let result = sample_state
+        let _result = sample_state
             .get_output_data()
             .expect("The output should not be empty.");
-
-        assert_eq!(result, expected_result);
     }
 
     #[test]
@@ -240,13 +236,9 @@ mod tests {
     ) {
         let ref_to_sample_state = &SampleState::default();
 
-        let expected_result = &SampleStateData::default();
-
-        let result = ref_to_sample_state
+        let _result = ref_to_sample_state
             .get_output_data()
             .expect("The output should not be empty.");
-
-        assert_eq!(result, expected_result);
     }
 
     #[test]
@@ -255,7 +247,7 @@ mod tests {
 
         let expected_result = String::from("Sample State");
 
-        let result = ref_to_sample_state.get_state_name();
+        let result = ref_to_sample_state.get_state_name().to_string();
 
         assert_eq!(result, expected_result);
     }
