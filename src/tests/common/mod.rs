@@ -1,6 +1,6 @@
 pub mod sample_state;
-pub mod simple_state_machine;
 pub mod sample_transition;
+pub mod simple_state_machine;
 
 pub use sample_state::{
     SampleState, SampleStateContext, SampleStateContextUpdaterBuilder, SampleStateData,
