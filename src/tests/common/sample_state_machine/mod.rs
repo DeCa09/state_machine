@@ -16,6 +16,10 @@ impl StateMachine<SampleState> for SampleStateMachine {
         &self.current_state
     }
 
+    fn get_current_state_mut(&mut self) -> &mut SampleState {
+        &mut self.current_state
+    }
+
     fn run(&mut self) {
         // Example implementation of run method
         // In a real scenario, this would contain logic to perform operations based on the current state
