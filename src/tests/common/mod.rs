@@ -1,5 +1,5 @@
 pub mod sample_state;
-pub mod sample_state_machine;
+pub mod simple_state_machine;
 pub mod sample_transition;
 
 pub use sample_state::{
@@ -7,7 +7,7 @@ pub use sample_state::{
     SampleStateDataUpdaterBuilder,
 };
 
-pub use sample_state_machine::SampleStateMachine;
+pub use simple_state_machine::SimpleStateMachine;
 
 pub use sample_transition::{
     complex_state_machine::ComplexStateMachine,

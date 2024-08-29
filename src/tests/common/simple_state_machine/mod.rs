@@ -1,17 +1,14 @@
 use std::fmt::Debug;
 
 use crate::state_machine::{state::State, StateMachine};
-use crate::tests::common::{SampleState, SampleStateContext, SampleStateData};
+use crate::tests::common::SampleState;
 
 #[derive(Debug, Clone, Default, PartialEq, PartialOrd, Hash, Eq, Ord)]
-pub struct SampleStateMachine {
+pub struct SimpleStateMachine {
     current_state: SampleState,
-    input: SampleStateData,
-    output: Option<SampleStateData>,
-    context_data: SampleStateContext,
 }
 
-impl StateMachine<SampleState> for SampleStateMachine {
+impl StateMachine<SampleState> for SimpleStateMachine {
     fn get_current_state(&self) -> &SampleState {
         &self.current_state
     }
