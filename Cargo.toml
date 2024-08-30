@@ -27,8 +27,9 @@ nursery = { level = "deny", priority = -1 }
 module_name_repetitions = { level = "allow", priority = 1 }
 
 [profile.release]
+opt-level = 3 # default for release profiles
 codegen-units = 1
 lto = "fat"
 strip = true
 panic = "abort"
-opt-level = 3 # default for release profiles
+
