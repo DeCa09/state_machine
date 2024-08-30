@@ -1,4 +1,3 @@
-
 use crate::state_machine::state::State;
 
 pub mod first_inner_state_context;

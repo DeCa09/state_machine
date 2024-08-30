@@ -1,14 +1,15 @@
-use crate::state_machine::{state::State, transition::Transition, super_state::SuperState, StateMachine};
+use crate::state_machine::{
+    state::State, super_state::SuperState, transition::Transition, StateMachine,
+};
+pub mod first_inner_state;
 pub mod sample_super_state_context;
 pub mod sample_super_state_data;
-pub mod first_inner_state;
 pub mod second_inner_state;
 
+pub use first_inner_state::FirstInnerState;
 pub use sample_super_state_context::SampleSuperStateContext;
 pub use sample_super_state_data::SampleSuperStateData;
-pub use first_inner_state::FirstInnerState;
 pub use second_inner_state::SecondInnerState;
-
 
 #[derive(Debug, Clone, Default, PartialEq, PartialOrd, Hash, Eq, Ord)]
 pub struct SampleSuperState<S: State> {
@@ -28,7 +29,6 @@ impl SampleSuperState<FirstInnerState> {
         }
     }
 }
-
 
 impl<S: State> SuperState<S> for SampleSuperState<S> {}
 
@@ -58,7 +58,6 @@ impl<S: State> State for SampleSuperState<S> {
     }
 }
 
-
 impl<S: State> StateMachine<S> for SampleSuperState<S> {
     fn get_current_state(&self) -> &S {
         &self.current_state
@@ -80,7 +79,6 @@ impl<S: State> StateMachine<S> for SampleSuperState<S> {
         self.get_current_state_mut().compute_output_data();
     }
 }
-
 
 impl Transition<FirstInnerState, SecondInnerState> for SampleSuperState<FirstInnerState> {
     type NewStateMachine = SampleSuperState<SecondInnerState>;
