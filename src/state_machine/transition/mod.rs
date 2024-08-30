@@ -1,8 +1,7 @@
 use crate::state_machine::{state::State, StateMachine};
 
 pub trait Transition<T: State, U: State>: StateMachine<T> {
-    type NextState: State;
-    type NextStateMachine: StateMachine<Self::NextState>;
+    type NewStateMachine: StateMachine<U>;
 
     //type Error;
 
@@ -15,10 +14,8 @@ pub trait Transition<T: State, U: State>: StateMachine<T> {
     /// - Invalid state transition due to undefined
     /// - No conversion between data formats between states possible
     /// - ...
-    //fn transition_to_next_state(self) -> Result<Self::NextState, &'static str>;
 
-    fn transition_to_next_state(self) -> Result<Self::NextStateMachine, &'static str>;
-    //fn transition_to_next_state(self) -> Result<StateMachine<Self::NextState>, Self::Error>;
+    fn transition_to_next_state(self) -> Result<Self::NewStateMachine, &'static str>;
 }
 
 #[cfg(test)]
