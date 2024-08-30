@@ -1,6 +1,6 @@
 use crate::state_machine::{state::State, StateMachine};
 
-pub trait Transition<T: State, U: State>: StateMachine<T> + Sized {
+pub trait Transition<T: State, U: State>: StateMachine<T> {
     type NextState: State;
     type NextStateMachine: StateMachine<Self::NextState>;
 
