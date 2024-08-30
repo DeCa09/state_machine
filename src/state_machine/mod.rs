@@ -1,4 +1,5 @@
 pub mod state;
+pub mod super_state;
 pub mod transition;
 
 use crate::state_machine::state::State;
