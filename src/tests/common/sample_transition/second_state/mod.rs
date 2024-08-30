@@ -3,8 +3,8 @@ use crate::state_machine::state::State;
 pub mod second_state_context;
 pub mod second_state_data;
 
-pub use second_state_context::{SecondStateContext, SecondStateContextUpdaterBuilder};
-pub use second_state_data::{SecondStateData, SecondStateDataUpdaterBuilder};
+pub use second_state_context::SecondStateContext;
+pub use second_state_data::SecondStateData;
 
 #[derive(Debug, Clone, Default, PartialEq, PartialOrd, Hash, Eq, Ord)]
 pub struct SecondState {
