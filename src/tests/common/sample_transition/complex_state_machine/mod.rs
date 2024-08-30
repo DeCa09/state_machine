@@ -8,7 +8,13 @@ pub struct ComplexStateMachine<S: State> {
     current_state: S,
 }
 
-impl<S: State> ComplexStateMachine<S> {}
+impl<S: State> ComplexStateMachine<S> {
+    fn new_machine(self) -> Result<ComplexStateMachine<SecondState>, &'static str> {
+        Ok(ComplexStateMachine {
+            current_state: SecondState::default(),
+        })
+    }
+}
 
 impl ComplexStateMachine<FirstState> {
     pub fn new() -> Self {
@@ -64,16 +70,22 @@ impl StateMachine<SecondState> for ComplexStateMachine<SecondState> {
 
 impl Transition<FirstState, SecondState> for ComplexStateMachine<FirstState> {
     type NextState = SecondState;
+    type NextStateMachine = ComplexStateMachine<Self::NextState>;
 
-    fn transition_to_next_state(self) -> Result<Self::NextState, &'static str> {
-        Ok(SecondState::default())
+    fn transition_to_next_state(self) -> Result<Self::NextStateMachine, &'static str> {
+        Ok(ComplexStateMachine {
+            current_state: SecondState::default(),
+        })
     }
 }
 
 impl Transition<FirstState, FirstState> for ComplexStateMachine<FirstState> {
     type NextState = FirstState;
+    type NextStateMachine = ComplexStateMachine<Self::NextState>;
 
-    fn transition_to_next_state(self) -> Result<Self::NextState, &'static str> {
-        Ok(FirstState::default())
+    fn transition_to_next_state(self) -> Result<Self::NextStateMachine, &'static str> {
+        Ok(ComplexStateMachine {
+            current_state: FirstState::default(),
+        })
     }
 }
