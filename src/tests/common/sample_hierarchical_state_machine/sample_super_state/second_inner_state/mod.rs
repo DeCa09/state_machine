@@ -19,7 +19,7 @@ impl State for SecondInnerState {
     type Context = SecondInnerStateContext;
 
     fn get_state_name(&self) -> impl ToString {
-        "Second State"
+        "Second Inner State"
     }
 
     fn get_input_data(&self) -> &SecondInnerStateData {
