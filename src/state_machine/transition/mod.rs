@@ -1,6 +1,7 @@
 use crate::state_machine::{state::State, StateMachine};
 
 pub trait Transition<T: State, U: State>: StateMachine<T> {
+    /// Updated state machine in new state
     type NewStateMachine: StateMachine<U>;
 
     //type Error;
