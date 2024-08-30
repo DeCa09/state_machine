@@ -1,3 +1,4 @@
+pub mod sample_hierarchical_state_machine;
 pub mod sample_state;
 pub mod sample_transition;
 pub mod simple_state_machine;

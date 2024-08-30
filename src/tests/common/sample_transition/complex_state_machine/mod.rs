@@ -1,6 +1,6 @@
 use crate::state_machine::{state::State, transition::Transition, StateMachine};
 
-use super::{first_state::FirstState, second_state::SecondState};
+use super::{FirstState, SecondState};
 
 // Define the StateMachine that uses FirstState and SecondState
 #[derive(Debug, Clone, Default, PartialEq, PartialOrd, Hash, Eq, Ord)]
