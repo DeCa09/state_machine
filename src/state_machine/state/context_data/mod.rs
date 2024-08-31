@@ -32,7 +32,26 @@ pub trait ContextData:
 {
     type UpdateType;
 
+    /// Returns a reference to the context data.
+    ///
+    /// This method provides access to the current context data, allowing other parts of the state machine
+    /// to read the context information. It returns a reference to the data, ensuring that the actual context
+    /// is not modified by this method.
+    ///
+    /// # Returns
+    ///
+    /// A reference to the context data of the implementing type.
     fn get_context(&self) -> &Self;
+
+    /// Updates the context data based on the provided updates.
+    ///
+    /// This method allows the context data to be modified according to the changes specified in the
+    /// `updates` parameter. The type of `updates` is defined by the `UpdateType` associated type,
+    /// which allows for flexible and specific update mechanisms tailored to the context's needs.
+    ///
+    /// # Parameters
+    ///
+    /// - `updates`: A value of type `UpdateType` that contains the changes to be applied to the context data.
     fn update_context(&mut self, updates: Self::UpdateType);
 }
 
