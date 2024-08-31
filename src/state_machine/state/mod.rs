@@ -38,7 +38,6 @@ pub use state_data::StateData;
 /// - `get_output_data`: Returns an optional reference to the output data. If the output data has been computed, it will return `Some(&OutputData)`, otherwise `None`.
 /// - `has_output_data_been_computed`: Returns a boolean indicating whether the output data has been computed. The default implementation checks if `get_output_data` returns `Some`.
 /// - `get_context_data`: Returns a reference to the context data associated with the state. This data provides additional information or settings relevant to the state.
-
 pub trait State:
     Debug + Send + Sync + Unpin + Clone + PartialEq + PartialOrd + Hash + Eq + Ord
 {
