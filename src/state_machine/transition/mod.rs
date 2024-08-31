@@ -1,5 +1,25 @@
 use crate::state_machine::{state::State, StateMachine};
 
+/// A trait that defines the ability of a state machine to transition from one state to another.
+///
+/// The `Transition` trait extends the `StateMachine` trait, allowing a state machine to move from
+/// one state of type `T` to a new state of type `U`. This trait is generic over the states `T` and `U`,
+/// which must both implement the `State` trait. The trait also requires the current state machine to
+/// implement `StateMachine<T>`.
+///
+/// # Associated Types
+///
+/// - `NewStateMachine`: Represents the type of the state machine after the transition has been performed.
+///   This type must implement the `StateMachine<U>` trait, ensuring the state machine is valid in the new state.
+///
+/// # Errors
+///
+/// Implementors of this trait must handle potential errors that could occur during state transitions. 
+/// These errors can occur due to several reasons:
+/// - Attempting to transition to a state that is not defined in the state machine.
+/// - Incompatibilities between the data formats of the current state and the new state.
+/// - Logical errors in the state transition logic, such as invalid conditions for transitioning.
+///
 pub trait Transition<T: State, U: State>: StateMachine<T> {
     /// Updated state machine in new state
     type NewStateMachine: StateMachine<U>;
