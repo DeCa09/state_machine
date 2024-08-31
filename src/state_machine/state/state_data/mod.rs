@@ -36,7 +36,26 @@ pub trait StateData:
 {
     type UpdateType;
 
+    /// Returns a reference to the internal state data.
+    ///
+    /// This method provides access to the current state data, allowing other parts of the state machine
+    /// to read the state information. It returns a reference to the data, ensuring that the actual state
+    /// is not modified by this method.
+    ///
+    /// # Returns
+    ///
+    /// A reference to the state data of the implementing type.
     fn get_state(&self) -> &Self;
+
+    /// Updates the internal state data based on the provided updates.
+    ///
+    /// This method allows the state data to be modified according to the changes specified in the
+    /// `updates` parameter. The type of `updates` is defined by the `UpdateType` associated type,
+    /// which allows for flexible and specific update mechanisms tailored to the state's needs.
+    ///
+    /// # Parameters
+    ///
+    /// - `updates`: A value of type `UpdateType` that contains the changes to be applied to the state data.
     fn update_state(&mut self, updates: Self::UpdateType);
 }
 
