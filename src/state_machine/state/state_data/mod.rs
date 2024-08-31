@@ -1,6 +1,5 @@
 use std::{fmt::Debug, hash::Hash};
 
-
 /// The `StateData` trait defines the behavior and characteristics of state data within a state machine.
 ///
 /// This trait is used to represent the data associated with a specific state in a state machine. It provides
