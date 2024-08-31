@@ -1,5 +1,36 @@
 use std::{fmt::Debug, hash::Hash};
 
+
+/// The `StateData` trait defines the behavior and characteristics of state data within a state machine.
+///
+/// This trait is used to represent the data associated with a specific state in a state machine. It provides
+/// methods to access and update the state data, ensuring that state transitions and updates are handled
+/// consistently and correctly. The `StateData` trait requires the implementation of various Rust standard
+/// traits to guarantee safety, comparability, and debugging capabilities.
+///
+/// # Associated Types
+///
+/// - `UpdateType`: Defines the type of updates that can be applied to the state data. This allows
+///   the state data to be modified based on specific requirements, encapsulating the changes in
+///   a structured manner.
+///
+/// # Required Traits
+///
+/// Implementations of the `StateData` trait must also implement several Rust standard traits to ensure
+/// thread safety, comparison, and debugging capabilities:
+/// - `Debug`: Allows the state data to be formatted using the `{:?}` formatter, which is useful for debugging.
+/// - `Send`, `Sync`, `Unpin`: Ensure that the state data can be safely transferred and accessed across threads.
+/// - `Clone`, `PartialEq`, `PartialOrd`, `Hash`, `Eq`, `Ord`: Support comparison and hashing, which is
+///   necessary for certain data structures like sets or maps.
+///
+/// # Methods
+///
+/// The `StateData` trait defines two key methods:
+///
+/// - `get_state`: Returns a reference to the state data. This method provides access to the current state data,
+///   allowing the state machine to inspect or read the data.
+/// - `update_state`: Updates the state data based on the provided updates. This method allows modifications to the state data,
+///   applying the changes specified by the `UpdateType`.
 pub trait StateData:
     Debug + Send + Sync + Unpin + Clone + PartialEq + PartialOrd + Hash + Eq + Ord
 {
