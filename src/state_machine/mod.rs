@@ -4,6 +4,26 @@ pub mod transition;
 
 use crate::state_machine::state::State;
 
+/// The `StateMachine` trait defines the behavior and structure of a state machine.
+///
+/// This trait is used to represent a state machine that can manage and transition between different states
+/// of type `S`. It provides methods for accessing the current state, running the state machine, and advancing
+/// to the next state. Implementing this trait allows the creation of modular and reusable state machine components.
+///
+/// # Type Parameters
+///
+/// - `S`: A type that implements the `State` trait. This parameter specifies the type of state that the state
+///   machine manages.
+///
+/// # Methods
+///
+/// - `get_current_state`: Returns a reference to the current state of the state machine.
+/// - `get_current_state_mut`: Returns a mutable reference to the current state of the state machine, allowing
+///   modification of the state.
+/// - `run`: Executes the logic of the state machine. This method is expected to handle state transitions
+///   and perform any necessary computations.
+/// - `advance_state`: Advances the state machine to the next state. This method is typically used to trigger
+///   state transitions based on certain conditions or events.
 pub trait StateMachine<S: State> {
     fn get_current_state(&self) -> &S;
 
