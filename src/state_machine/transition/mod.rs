@@ -30,14 +30,20 @@ pub trait Transition<T: State, U: State>: StateMachine<T> {
 
     /// Transitions the state machine to the next state.
     ///
+    /// This method performs the transition from the current state `T` to the new state `U`, updating
+    /// the state machine accordingly. The method returns a result that contains the updated state machine
+    /// in the new state or an error message if the transition fails.
+    ///
+    /// # Returns
+    ///
+    /// - `Ok(NewStateMachine)`: The updated state machine in the new state.
+    /// - `Err(&'static str)`: An error message indicating the reason for the failed transition.
+    ///
     /// # Errors
     ///
-    /// This function will return an error if the transition to the next state fails.
-    /// Possible reasons include:
-    /// - Invalid state transition due to undefined
-    /// - No conversion between data formats between states possible
-    /// - ...
-
+    /// Errors can occur for various reasons, including but not limited to:
+    /// - The transition is not defined between the current state and the target state.
+    /// - Incompatible data or invalid conditions prevent a successful transition.
     fn transition_to_next_state(self) -> Result<Self::NewStateMachine, &'static str>;
 }
 
