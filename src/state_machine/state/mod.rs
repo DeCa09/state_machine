@@ -6,7 +6,6 @@ pub mod state_data;
 pub use context_data::ContextData;
 pub use state_data::StateData;
 
-
 /// The `State` trait defines the behavior and characteristics of a state within a state machine.
 ///
 /// This trait encompasses the key functionalities that a state must implement, including methods for
@@ -46,7 +45,6 @@ pub trait State:
     type InputData: StateData;
     type OutputData: StateData;
     type Context: ContextData;
-
 
     /// Returns the name of the state.
     ///
