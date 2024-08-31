@@ -1,5 +1,30 @@
 use super::{state::State, StateMachine};
 
+/// The `SuperState` trait represents a state that can encapsulate and manage other states within a state machine.
+///
+/// This trait is used for hierarchical state machines, where a `SuperState` acts as a higher-level state
+/// that contains and manages multiple sub-states. By implementing both the `State` and `StateMachine` traits,
+/// `SuperState` allows complex state transitions and behavior encapsulation, enabling structured and scalable
+/// state machine designs.
+///
+/// # Type Parameters
+///
+/// - `S`: A type that implements the `State` trait. This parameter specifies the type of sub-states
+///   that the `SuperState` can manage. The `SuperState` itself must implement the `StateMachine<S>`
+///   trait, which provides the necessary methods for managing these sub-states.
+///
+/// # Requirements
+///
+/// - Implementations of the `SuperState` trait must also implement the `StateMachine<S>` trait for the
+///   specified sub-state type `S`. This ensures that the `SuperState` has the necessary functionality
+///   to transition between and manage its sub-states.
+///
+/// # Usage
+///
+/// `SuperState` is typically used in scenarios where state hierarchy is necessary, such as nested state
+/// machines or complex workflows where a single state might need to manage multiple sub-states internally.
+/// By using the `SuperState` trait, developers can create modular and reusable state machine components
+/// that encapsulate specific behaviors and transitions.
 pub trait SuperState<S: State>: StateMachine<S> + State {}
 
 #[cfg(test)]
