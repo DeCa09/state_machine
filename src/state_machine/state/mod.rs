@@ -47,18 +47,62 @@ pub trait State:
     type OutputData: StateData;
     type Context: ContextData;
 
+
+    /// Returns the name of the state.
+    ///
+    /// This method provides a way to identify the current state by name, which can be useful for debugging
+    /// or logging purposes.
+    ///
+    /// # Returns
+    ///
+    /// A type that can be converted into a string, representing the name of the state.
     fn get_state_name(&self) -> impl ToString;
 
+    /// Returns a reference to the input data associated with the state.
+    ///
+    /// Input data is used by the state to perform its operations and produce output data. This method
+    /// provides access to the current input data.
+    ///
+    /// # Returns
+    ///
+    /// A reference to the input data of type `InputData`.
     fn get_input_data(&self) -> &Self::InputData;
 
+    /// Computes the output data from the input data.
+    ///
+    /// This method is responsible for processing the input data and generating the corresponding output data.
+    /// It modifies the state to store the computed output data.
     fn compute_output_data(&mut self);
 
+    /// Returns an optional reference to the output data.
+    ///
+    /// This method provides access to the output data if it has been computed. If the output data has not
+    /// been computed, it returns `None`.
+    ///
+    /// # Returns
+    ///
+    /// An `Option` containing a reference to the output data of type `OutputData` if available, otherwise `None`.
     fn get_output_data(&self) -> Option<&Self::OutputData>;
 
+    /// Checks if the output data has been computed.
+    ///
+    /// By default, this method checks if `get_output_data` returns `Some`. It can be overridden for more complex checks.
+    ///
+    /// # Returns
+    ///
+    /// `true` if the output data has been computed, otherwise `false`.
     fn has_output_data_been_computed(&self) -> bool {
         self.get_output_data().is_some()
     }
 
+    /// Returns a reference to the context data associated with the state.
+    ///
+    /// Context data provides additional information or configuration that is relevant to the state. This method
+    /// provides access to the current context data.
+    ///
+    /// # Returns
+    ///
+    /// A reference to the context data of type `Context`.
     fn get_context_data(&self) -> &Self::Context;
 }
 
