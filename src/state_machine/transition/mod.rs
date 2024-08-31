@@ -14,16 +14,18 @@ use crate::state_machine::{state::State, StateMachine};
 ///
 /// # Errors
 ///
-/// Implementors of this trait must handle potential errors that could occur during state transitions. 
+/// Implementors of this trait must handle potential errors that could occur during state transitions.
 /// These errors can occur due to several reasons:
 /// - Attempting to transition to a state that is not defined in the state machine.
 /// - Incompatibilities between the data formats of the current state and the new state.
 /// - Logical errors in the state transition logic, such as invalid conditions for transitioning.
 ///
 pub trait Transition<T: State, U: State>: StateMachine<T> {
-    /// Updated state machine in new state
+    /// The type of the state machine after transitioning to the new state.
+    ///
+    /// This type represents the state machine in its new state. It must implement the `StateMachine<U>` trait,
+    /// which ensures that it correctly represents a state machine capable of handling the state `U`.
     type NewStateMachine: StateMachine<U>;
-
     //type Error;
 
     /// Transitions the state machine to the next state.
