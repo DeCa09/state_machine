@@ -25,12 +25,30 @@ use crate::state_machine::state::State;
 /// - `advance_state`: Advances the state machine to the next state. This method is typically used to trigger
 ///   state transitions based on certain conditions or events.
 pub trait StateMachine<S: State> {
+    /// Returns a reference to the current state of the state machine.
+    ///
+    /// # Returns
+    ///
+    /// A reference to the current state of type `S`.
     fn get_current_state(&self) -> &S;
 
+    /// Returns a mutable reference to the current state of the state machine.
+    ///
+    /// # Returns
+    ///
+    /// A mutable reference to the current state of type `S`.
     fn get_current_state_mut(&mut self) -> &mut S;
 
+    /// Runs the state machine, executing its logic.
+    ///
+    /// This method is responsible for running the state machine, handling any necessary state transitions,
+    /// and executing the logic associated with each state.
     fn run(&mut self);
 
+    /// Advances the state machine to the next state.
+    ///
+    /// This method is used to transition the state machine to the next state, based on predefined
+    /// transition rules or conditions.
     fn advance_state(&mut self);
 }
 
